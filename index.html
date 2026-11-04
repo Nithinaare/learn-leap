@@ -335,25 +335,27 @@
     .hero-inner {
       position: relative;
       z-index: 1;
-      max-width: var(--wrap);
+      max-width: 860px;
       margin: 0 auto;
-      padding: 80px 32px 100px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      padding: 110px 24px 120px;
+      display: flex;
+      flex-direction: column;
       align-items: center;
+      text-align: center;
     }
 
     @media (max-width: 860px) {
       .hero-inner {
-        grid-template-columns: 1fr;
-        padding: 60px 20px 72px;
-        gap: 40px;
+        padding: 70px 20px 80px;
       }
-      .hero-visual { order: -1; }
     }
 
-    .hero-content { display: flex; flex-direction: column; align-items: flex-start; }
+    .hero-content { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      text-align: center;
+    }
 
     .hero-eyebrow {
       display: inline-flex;
@@ -395,18 +397,19 @@
     }
 
     .hero-sub {
-      font-size: clamp(16px, 2vw, 18px);
+      font-size: clamp(16px, 2.2vw, 19px);
       color: var(--ink-2);
-      line-height: 1.65;
-      max-width: 500px;
-      margin-bottom: 36px;
+      line-height: 1.7;
+      max-width: 640px;
+      margin: 0 auto 36px;
     }
 
     .hero-trust {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
-      margin-top: 20px;
+      margin-top: 24px;
       font-size: 13px;
       color: var(--muted);
       font-weight: 500;
@@ -1218,61 +1221,6 @@
             Trusted by schools &amp; students across India
           </div>
         </div>
-
-        <!-- Right visual -->
-        <div class="hero-visual" aria-hidden="true">
-          <div class="hero-card-stack">
-            <div class="hero-main-card">
-              <div class="hero-icon-grid">
-                <!-- Career Guidance tile -->
-                <div class="hero-icon-tile">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
-                    <path d="M2 17l10 5 10-5" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
-                    <path d="M2 12l10 5 10-5" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
-                  </svg>
-                  <span class="hero-icon-tile-label">Career Guidance</span>
-                </div>
-                <!-- Skill Dev tile -->
-                <div class="hero-icon-tile">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.5"/>
-                    <path d="M12 7v5l3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
-                  </svg>
-                  <span class="hero-icon-tile-label">Skill Development</span>
-                </div>
-                <!-- Digital App tile -->
-                <div class="hero-icon-tile">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <rect x="5" y="2" width="14" height="20" rx="2" stroke="#fff" stroke-width="1.5"/>
-                    <circle cx="12" cy="18" r="1" fill="#fff"/>
-                  </svg>
-                  <span class="hero-icon-tile-label">Digital App</span>
-                </div>
-                <!-- Mentorship tile -->
-                <div class="hero-icon-tile">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
-                    <circle cx="9" cy="7" r="4" stroke="#fff" stroke-width="1.5"/>
-                    <path d="M23 21v-2a4 4 0 00-3-3.87" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
-                    <path d="M16 3.13a4 4 0 010 7.75" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
-                  </svg>
-                  <span class="hero-icon-tile-label">1-on-1 Mentoring</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Floating pills -->
-            <div class="hero-pill hero-pill-1">
-              <div class="pill-dot"></div>
-              Enrolments Open
-            </div>
-            <div class="hero-pill hero-pill-2">
-              🎯 Career-First Approach
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
 
