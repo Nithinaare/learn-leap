@@ -438,105 +438,117 @@
     .hero-trust-dot:nth-child(2) { background: var(--red); }
     .hero-trust-dot:nth-child(3) { background: #2563EB; }
 
-    /* Hero visual */
-    .hero-visual {
+    /* ============================================================
+       INTEGRATED SECTION-TO-SECTION LEAP BRIDGES
+    ============================================================ */
+    .section-leap-bridge {
       position: relative;
+      width: 100%;
+      height: 180px;
+      margin: -25px 0;
+      z-index: 10;
+      overflow: hidden;
+      pointer-events: none;
     }
 
-    .hero-card-stack {
+    .bridge-wrap {
       position: relative;
-      aspect-ratio: 4/3.5;
-    }
-
-    .hero-main-card {
       width: 100%;
       height: 100%;
-      border-radius: var(--radius-xl);
-      background: linear-gradient(135deg, var(--navy) 0%, #0a2d6b 60%, #163580 100%);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 20px;
-      padding: 40px;
-      box-shadow: var(--shadow-lg);
-      position: relative;
-      overflow: hidden;
     }
 
-    .hero-main-card::before {
-      content: '';
+    .bridge-svg {
       position: absolute;
       inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='7' cy='7' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-    }
-
-    .hero-icon-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      position: relative;
-      z-index: 1;
       width: 100%;
-      max-width: 280px;
+      height: 100%;
     }
 
-    .hero-icon-tile {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: var(--radius-md);
-      padding: 18px 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-      transition: background 0.2s;
+    .bridge-track-bg {
+      fill: none;
+      stroke: rgba(0, 28, 76, 0.08);
+      stroke-width: 2.5;
+      stroke-dasharray: 6 6;
     }
 
-    .hero-icon-tile:hover { background: rgba(255,255,255,0.13); }
-
-    .hero-icon-tile svg { opacity: 0.9; }
-
-    .hero-icon-tile-label {
-      font-size: 12px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.75);
-      line-height: 1.3;
+    .bridge-track-active {
+      fill: none;
+      stroke-width: 4;
+      stroke-linecap: round;
+      filter: drop-shadow(0 4px 10px rgba(216, 34, 33, 0.35));
+      transition: stroke-dashoffset 0.04s linear;
     }
 
-    .hero-pill {
+    .bridge-leaper {
       position: absolute;
+      top: 0;
+      left: 0;
+      width: 42px;
+      height: 42px;
+      margin-top: -21px;
+      margin-left: -21px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #FFFFFF;
       display: flex;
       align-items: center;
-      gap: 8px;
-      border-radius: 999px;
-      padding: 10px 16px;
-      font-size: 12px;
-      font-weight: 700;
-      white-space: nowrap;
-      box-shadow: var(--shadow-md);
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(0, 28, 76, 0.35);
+      z-index: 12;
+      will-change: transform;
+      transition: transform 0.05s linear, background 0.3s;
     }
 
-    .hero-pill-1 {
-      bottom: -20px;
-      left: -24px;
-      background: #fff;
-      color: var(--ink);
-      border: 1px solid var(--line);
-    }
-
-    .hero-pill-1 .pill-dot { width: 8px; height: 8px; border-radius: 50%; background: #10B981; }
-
-    .hero-pill-2 {
-      top: -20px;
-      right: -20px;
+    .bridge-leaper.airborne {
       background: var(--red);
-      color: #fff;
+      box-shadow: 0 8px 24px rgba(216, 34, 33, 0.55);
+      transform: scale(1.18);
     }
 
-    @media (max-width: 640px) {
-      .hero-pill-1 { left: 0; bottom: -16px; }
-      .hero-pill-2 { right: 0; top: -16px; }
+    .bridge-leaper.touchdown {
+      background: #10B981;
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.55);
+      transform: scale(1.22);
+    }
+
+    .leaper-icon {
+      width: 24px;
+      height: 24px;
+      stroke: #FFFFFF;
+    }
+
+    .bridge-launch-point, .bridge-land-point {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--navy);
+      z-index: 8;
+    }
+
+    .bridge-launch-point { left: 80px; bottom: 25px; }
+    .bridge-land-point { right: 80px; bottom: 25px; }
+
+    .section-leap-bridge.reverse .bridge-track-bg,
+    .section-leap-bridge.reverse .bridge-track-active {
+      transform: scaleX(-1);
+      transform-origin: center;
+    }
+    .section-leap-bridge.reverse .bridge-launch-point { left: auto; right: 80px; }
+    .section-leap-bridge.reverse .bridge-land-point { right: auto; left: 80px; }
+
+    @media (max-width: 768px) {
+      .section-leap-bridge { height: 130px; margin: -10px 0; }
+      .bridge-leaper { width: 34px; height: 34px; margin-top: -17px; margin-left: -17px; }
+      .leaper-icon { width: 18px; height: 18px; }
+      .bridge-launch-point { left: 24px; }
+      .bridge-land-point { right: 24px; }
+      .section-leap-bridge.reverse .bridge-launch-point { right: 24px; }
+      .section-leap-bridge.reverse .bridge-land-point { left: 24px; }
     }
 
     /* ============================================================
@@ -1225,6 +1237,35 @@
     </section>
 
     <!-- ============================================================
+         LEAP BRIDGE 1 (HERO -> WHAT WE DO)
+    ============================================================ -->
+    <div class="section-leap-bridge" id="bridge-1">
+      <div class="wrap bridge-wrap">
+        <svg class="bridge-svg" viewBox="0 0 1000 180" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="bridge-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#001C4C" stop-opacity="0.2"/>
+              <stop offset="45%" stop-color="#D82221"/>
+              <stop offset="100%" stop-color="#2563EB"/>
+            </linearGradient>
+          </defs>
+          <path class="bridge-track-bg" d="M 80 150 C 300 150, 380 30, 500 30 C 620 30, 700 150, 920 150" />
+          <path id="bridge-curve-1" class="bridge-track-active" stroke="url(#bridge-grad-1)" d="M 80 150 C 300 150, 380 30, 500 30 C 620 30, 700 150, 920 150" />
+        </svg>
+        <div class="bridge-launch-point"></div>
+        <div class="bridge-land-point"></div>
+        <div class="bridge-leaper" id="bridge-leaper-1">
+          <svg class="leaper-icon" viewBox="0 0 24 24" fill="none">
+            <circle cx="15" cy="5" r="2.2" fill="#FFFFFF"/>
+            <path d="M7 21l3-6 3.5 2 2.5 5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+            <path d="M10 15l2-4 3.5 1.5 3-2.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 11l-4-3 1.5-3" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
          03. WHAT WE DO
     ============================================================ -->
     <section class="what-section" id="what-we-do" aria-labelledby="what-heading">
@@ -1312,6 +1353,35 @@
     </section>
 
     <!-- ============================================================
+         LEAP BRIDGE 2 (WHAT WE DO -> FEATURES)
+    ============================================================ -->
+    <div class="section-leap-bridge reverse" id="bridge-2">
+      <div class="wrap bridge-wrap">
+        <svg class="bridge-svg" viewBox="0 0 1000 180" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="bridge-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#2563EB" stop-opacity="0.2"/>
+              <stop offset="50%" stop-color="#D82221"/>
+              <stop offset="100%" stop-color="#10B981"/>
+            </linearGradient>
+          </defs>
+          <path class="bridge-track-bg" d="M 80 150 C 300 150, 380 30, 500 30 C 620 30, 700 150, 920 150" />
+          <path id="bridge-curve-2" class="bridge-track-active" stroke="url(#bridge-grad-2)" d="M 80 150 C 300 150, 380 30, 500 30 C 620 30, 700 150, 920 150" />
+        </svg>
+        <div class="bridge-launch-point"></div>
+        <div class="bridge-land-point"></div>
+        <div class="bridge-leaper" id="bridge-leaper-2">
+          <svg class="leaper-icon" viewBox="0 0 24 24" fill="none">
+            <circle cx="15" cy="5" r="2.2" fill="#FFFFFF"/>
+            <path d="M7 21l3-6 3.5 2 2.5 5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+            <path d="M10 15l2-4 3.5 1.5 3-2.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 11l-4-3 1.5-3" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
          04. FEATURES
     ============================================================ -->
     <section class="features-section" id="features" aria-labelledby="features-heading">
@@ -1392,6 +1462,35 @@
         </div>
       </div>
     </section>
+
+    <!-- ============================================================
+         LEAP BRIDGE 3 (FEATURES -> STORIES)
+    ============================================================ -->
+    <div class="section-leap-bridge" id="bridge-3">
+      <div class="wrap bridge-wrap">
+        <svg class="bridge-svg" viewBox="0 0 1000 180" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="bridge-grad-3" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#10B981" stop-opacity="0.2"/>
+              <stop offset="50%" stop-color="#D82221"/>
+              <stop offset="100%" stop-color="#001C4C"/>
+            </linearGradient>
+          </defs>
+          <path class="bridge-track-bg" d="M 80 150 C 300 150, 380 30, 500 30 C 620 30, 700 150, 920 150" />
+          <path id="bridge-curve-3" class="bridge-track-active" stroke="url(#bridge-grad-3)" d="M 80 150 C 300 150, 380 30, 500 30 C 620 30, 700 150, 920 150" />
+        </svg>
+        <div class="bridge-launch-point"></div>
+        <div class="bridge-land-point"></div>
+        <div class="bridge-leaper" id="bridge-leaper-3">
+          <svg class="leaper-icon" viewBox="0 0 24 24" fill="none">
+            <circle cx="15" cy="5" r="2.2" fill="#FFFFFF"/>
+            <path d="M7 21l3-6 3.5 2 2.5 5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+            <path d="M10 15l2-4 3.5 1.5 3-2.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 11l-4-3 1.5-3" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
 
     <!-- ============================================================
          05. TESTIMONIALS
@@ -1476,6 +1575,35 @@
         </div>
       </div>
     </section>
+
+    <!-- ============================================================
+         LEAP BRIDGE 4 (STORIES -> CONTACT)
+    ============================================================ -->
+    <div class="section-leap-bridge reverse" id="bridge-4">
+      <div class="wrap bridge-wrap">
+        <svg class="bridge-svg" viewBox="0 0 1000 180" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="bridge-grad-4" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#001C4C" stop-opacity="0.2"/>
+              <stop offset="50%" stop-color="#D82221"/>
+              <stop offset="100%" stop-color="#10B981"/>
+            </linearGradient>
+          </defs>
+          <path class="bridge-track-bg" d="M 80 150 C 300 150, 380 30, 500 30 C 620 30, 700 150, 920 150" />
+          <path id="bridge-curve-4" class="bridge-track-active" stroke="url(#bridge-grad-4)" d="M 80 150 C 300 150, 380 30, 500 30 C 620 30, 700 150, 920 150" />
+        </svg>
+        <div class="bridge-launch-point"></div>
+        <div class="bridge-land-point"></div>
+        <div class="bridge-leaper" id="bridge-leaper-4">
+          <svg class="leaper-icon" viewBox="0 0 24 24" fill="none">
+            <circle cx="15" cy="5" r="2.2" fill="#FFFFFF"/>
+            <path d="M7 21l3-6 3.5 2 2.5 5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+            <path d="M10 15l2-4 3.5 1.5 3-2.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 11l-4-3 1.5-3" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
 
     <!-- ============================================================
          06. CONTACT FORM
@@ -1668,6 +1796,70 @@
       });
       successMsg.style.display = 'block';
     });
+
+    // ============================================================
+    // INTEGRATED SECTION-TO-SECTION LEAP BRIDGES DRIVER
+    // ============================================================
+    const bridges = [1, 2, 3, 4].map(id => {
+      const el = document.getElementById(`bridge-${id}`);
+      const curve = document.getElementById(`bridge-curve-${id}`);
+      const leaper = document.getElementById(`bridge-leaper-${id}`);
+      const svg = el ? el.querySelector('.bridge-svg') : null;
+
+      if (!el || !curve || !leaper) return null;
+
+      const len = curve.getTotalLength();
+      curve.style.strokeDasharray = len;
+      curve.style.strokeDashoffset = len;
+
+      return { el, curve, leaper, svg, len };
+    }).filter(Boolean);
+
+    function updateSectionBridges() {
+      const winHeight = window.innerHeight;
+
+      bridges.forEach(b => {
+        const rect = b.el.getBoundingClientRect();
+        
+        const startY = winHeight;
+        const endY = -rect.height;
+        let progress = (startY - rect.top) / (startY - endY);
+        progress = Math.max(0, Math.min(1, progress));
+
+        b.curve.style.strokeDashoffset = b.len * (1 - progress);
+
+        const pt = b.curve.getPointAtLength(progress * b.len);
+        const svgW = b.svg.clientWidth || 1000;
+        const svgH = b.svg.clientHeight || 180;
+        const actualX = (pt.x / 1000) * svgW;
+        const actualY = (pt.y / 180) * svgH;
+
+        b.leaper.style.transform = `translate3d(${actualX}px, ${actualY}px, 0)`;
+
+        if (progress > 0.15 && progress < 0.85) {
+          b.leaper.classList.add('airborne');
+          b.leaper.classList.remove('touchdown');
+        } else if (progress >= 0.85) {
+          b.leaper.classList.remove('airborne');
+          b.leaper.classList.add('touchdown');
+        } else {
+          b.leaper.classList.remove('airborne', 'touchdown');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      requestAnimationFrame(updateSectionBridges);
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      bridges.forEach(b => {
+        b.len = b.curve.getTotalLength();
+      });
+      updateSectionBridges();
+    }, { passive: true });
+
+    updateSectionBridges();
   </script>
 
 </body>
