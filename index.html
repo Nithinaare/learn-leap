@@ -438,105 +438,164 @@
     .hero-trust-dot:nth-child(2) { background: var(--red); }
     .hero-trust-dot:nth-child(3) { background: #2563EB; }
 
-    /* Hero visual */
-    .hero-visual {
-      position: relative;
-    }
-
-    .hero-card-stack {
-      position: relative;
-      aspect-ratio: 4/3.5;
-    }
-
-    .hero-main-card {
-      width: 100%;
-      height: 100%;
-      border-radius: var(--radius-xl);
-      background: linear-gradient(135deg, var(--navy) 0%, #0a2d6b 60%, #163580 100%);
+    /* ============================================================
+       08. VERTICAL FLIGHT SPINE: PERSISTENT LEAP GAUGE
+    ============================================================ */
+    .flight-spine-container {
+      position: fixed;
+      right: 28px;
+      top: 52%;
+      transform: translateY(-50%);
+      z-index: 150;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 20px;
-      padding: 40px;
-      box-shadow: var(--shadow-lg);
-      position: relative;
-      overflow: hidden;
+      user-select: none;
     }
 
-    .hero-main-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='7' cy='7' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    @media (max-width: 960px) {
+      .flight-spine-container { display: none; }
     }
 
-    .hero-icon-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 280px;
-    }
-
-    .hero-icon-tile {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: var(--radius-md);
-      padding: 18px 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-      transition: background 0.2s;
-    }
-
-    .hero-icon-tile:hover { background: rgba(255,255,255,0.13); }
-
-    .hero-icon-tile svg { opacity: 0.9; }
-
-    .hero-icon-tile-label {
-      font-size: 12px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.75);
-      line-height: 1.3;
-    }
-
-    .hero-pill {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .spine-alt-capsule {
+      background: rgba(0, 28, 76, 0.92);
+      backdrop-filter: blur(12px);
+      color: #fff;
+      padding: 7px 14px;
       border-radius: 999px;
-      padding: 10px 16px;
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 18px rgba(0, 28, 76, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       white-space: nowrap;
-      box-shadow: var(--shadow-md);
+      text-align: center;
+      transition: all 0.25s;
     }
 
-    .hero-pill-1 {
-      bottom: -20px;
-      left: -24px;
-      background: #fff;
-      color: var(--ink);
+    .spine-alt-capsule span {
+      color: #10B981;
+    }
+
+    .spine-rail {
+      position: relative;
+      height: 260px;
+      width: 4px;
+      background: rgba(0, 28, 76, 0.1);
+      border-radius: 999px;
+    }
+
+    .spine-rail-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0%;
+      background: linear-gradient(180deg, var(--red) 0%, var(--navy) 60%, #10B981 100%);
+      border-radius: 999px;
+      transition: height 0.08s linear;
+    }
+
+    .spine-rung {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 2px solid var(--line);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .spine-rung::before {
+      content: attr(data-label);
+      position: absolute;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 4px 10px;
+      border-radius: 6px;
+      box-shadow: var(--shadow-sm);
       border: 1px solid var(--line);
     }
 
-    .hero-pill-1 .pill-dot { width: 8px; height: 8px; border-radius: 50%; background: #10B981; }
-
-    .hero-pill-2 {
-      top: -20px;
-      right: -20px;
-      background: var(--red);
-      color: #fff;
+    .spine-rung:hover::before {
+      opacity: 1;
+      transform: translateY(-50%) translateX(-4px);
     }
 
-    @media (max-width: 640px) {
-      .hero-pill-1 { left: 0; bottom: -16px; }
-      .hero-pill-2 { right: 0; top: -16px; }
+    .spine-rung.active {
+      border-color: var(--red);
+      background: var(--red);
+      transform: translate(-50%, -50%) scale(1.3);
+      box-shadow: 0 0 12px rgba(216, 34, 33, 0.5);
+    }
+
+    .spine-rung.active::before {
+      opacity: 1;
+      color: var(--navy);
+    }
+
+    .rung-1 { top: 0%; }
+    .rung-2 { top: 25%; }
+    .rung-3 { top: 50%; }
+    .rung-4 { top: 75%; }
+    .rung-5 { top: 100%; }
+
+    .spine-leaper {
+      position: absolute;
+      left: 50%;
+      top: 0%;
+      transform: translate(-50%, -50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0, 28, 76, 0.35);
+      z-index: 5;
+      pointer-events: none;
+      transition: top 0.08s linear, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s;
+    }
+
+    .spine-leaper.leaping {
+      transform: translate(-50%, -50%) scale(1.25);
+      background: var(--red);
+      box-shadow: 0 6px 20px rgba(216, 34, 33, 0.55);
+    }
+
+    .spine-leaper.orbit {
+      background: #10B981;
+      transform: translate(-50%, -50%) scale(1.3);
+      box-shadow: 0 6px 24px rgba(16, 185, 129, 0.6);
+    }
+
+    .spine-leaper svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .spine-footer-tag {
+      margin-top: 14px;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
     }
 
     /* ============================================================
@@ -1574,6 +1633,36 @@
       </div>
     </section>
 
+    <!-- ============================================================
+         08. VERTICAL FLIGHT SPINE (LEAP ELEVATION GAUGE)
+    ============================================================ -->
+    <aside class="flight-spine-container" id="flight-spine" aria-label="Flight Elevation Tracker">
+      <div class="spine-alt-capsule" id="spine-capsule">
+        Alt: <span id="spine-alt-val">0m</span> • <b id="spine-state-val">Launchpad</b>
+      </div>
+
+      <div class="spine-rail">
+        <div class="spine-rail-fill" id="spine-fill"></div>
+
+        <!-- Leaping avatar -->
+        <div class="spine-leaper" id="spine-leaper">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M2 17l10 5 10-5" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Milestone Rungs -->
+        <div class="spine-rung rung-1 active" data-target="home" data-label="01. Launchpad" title="Launchpad"></div>
+        <div class="spine-rung rung-2" data-target="what-we-do" data-label="02. Career Clarity" title="Career Clarity"></div>
+        <div class="spine-rung rung-3" data-target="features" data-label="03. Four Mediums" title="Four Mediums"></div>
+        <div class="spine-rung rung-4" data-target="testimonials" data-label="04. Real Stories" title="Real Stories"></div>
+        <div class="spine-rung rung-5" data-target="contact" data-label="05. Touchdown &amp; Partner" title="Touchdown"></div>
+      </div>
+
+      <span class="spine-footer-tag">Leap Gauge</span>
+    </aside>
+
   </main>
 
   <!-- ============================================================
@@ -1668,6 +1757,71 @@
       });
       successMsg.style.display = 'block';
     });
+
+    // ============================================================
+    // FLIGHT SPINE: ELEVATION GAUGE DRIVER
+    // ============================================================
+    const spineFill = document.getElementById('spine-fill');
+    const spineLeaper = document.getElementById('spine-leaper');
+    const spineAltVal = document.getElementById('spine-alt-val');
+    const spineStateVal = document.getElementById('spine-state-val');
+    const spineRungs = document.querySelectorAll('.spine-rung');
+
+    const sections = [
+      { id: 'home', alt: '0m', state: 'Launchpad' },
+      { id: 'what-we-do', alt: '350m', state: 'Ascending' },
+      { id: 'features', alt: '780m', state: 'Mid-Flight' },
+      { id: 'testimonials', alt: '1,250m', state: 'High Altitude' },
+      { id: 'contact', alt: 'Orbit 🚀', state: 'Touchdown' }
+    ];
+
+    function updateFlightSpine() {
+      const scrollY = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight <= 0) return;
+
+      const progress = Math.max(0, Math.min(1, scrollY / docHeight));
+      const percentage = progress * 100;
+
+      if (spineFill) spineFill.style.height = `${percentage}%`;
+      if (spineLeaper) {
+        spineLeaper.style.top = `${percentage}%`;
+        spineLeaper.classList.toggle('leaping', progress > 0.05 && progress < 0.95);
+        spineLeaper.classList.toggle('orbit', progress >= 0.95);
+      }
+
+      const midWin = scrollY + window.innerHeight * 0.45;
+      let activeIndex = 0;
+
+      sections.forEach((sec, idx) => {
+        const el = document.getElementById(sec.id);
+        if (el && midWin >= el.offsetTop) {
+          activeIndex = idx;
+        }
+      });
+
+      spineRungs.forEach((rung, idx) => {
+        rung.classList.toggle('active', idx === activeIndex);
+      });
+
+      const current = sections[activeIndex];
+      if (spineAltVal) spineAltVal.textContent = current.alt;
+      if (spineStateVal) spineStateVal.textContent = current.state;
+    }
+
+    spineRungs.forEach(rung => {
+      rung.addEventListener('click', () => {
+        const targetId = rung.getAttribute('data-target');
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      requestAnimationFrame(updateFlightSpine);
+    }, { passive: true });
+
+    updateFlightSpine();
   </script>
 
 </body>
