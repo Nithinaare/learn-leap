@@ -438,105 +438,356 @@
     .hero-trust-dot:nth-child(2) { background: var(--red); }
     .hero-trust-dot:nth-child(3) { background: #2563EB; }
 
-    /* Hero visual */
-    .hero-visual {
+    /* ============================================================
+       02.5 CANYON LEAP SCROLL INTERLUDE
+    ============================================================ */
+    .leap-stage-container {
       position: relative;
+      height: 220vh;
+      background: #FFFFFF;
     }
 
-    .hero-card-stack {
-      position: relative;
-      aspect-ratio: 4/3.5;
+    .leap-sticky-viewport {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 20%, rgba(0, 28, 76, 0.03) 0%, rgba(249, 249, 247, 0.9) 100%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
-    .hero-main-card {
+    .leap-stage-wrap {
       width: 100%;
-      height: 100%;
-      border-radius: var(--radius-xl);
-      background: linear-gradient(135deg, var(--navy) 0%, #0a2d6b 60%, #163580 100%);
+      max-width: var(--wrap);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 20px;
-      padding: 40px;
-      box-shadow: var(--shadow-lg);
       position: relative;
+      padding: 0 24px;
+    }
+
+    .leap-stage-header {
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .leap-canvas-wrap {
+      width: 100%;
+      height: 420px;
+      position: relative;
+      border-radius: var(--radius-xl);
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-md);
       overflow: hidden;
     }
 
-    .hero-main-card::before {
+    .leap-canvas-wrap::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='7' cy='7' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+      background: radial-gradient(ellipse at 50% 85%, rgba(0, 28, 76, 0.04) 0%, transparent 60%);
+      pointer-events: none;
     }
 
-    .hero-icon-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 280px;
-    }
-
-    .hero-icon-tile {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: var(--radius-md);
-      padding: 18px 16px;
+    .leap-platform {
+      position: absolute;
+      width: 190px;
+      z-index: 3;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-      transition: background 0.2s;
+      align-items: center;
+      text-align: center;
     }
 
-    .hero-icon-tile:hover { background: rgba(255,255,255,0.13); }
-
-    .hero-icon-tile svg { opacity: 0.9; }
-
-    .hero-icon-tile-label {
-      font-size: 12px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.75);
-      line-height: 1.3;
+    .platform-left {
+      left: 32px;
+      bottom: 24px;
     }
 
-    .hero-pill {
+    .platform-right {
+      right: 32px;
+      bottom: 130px;
+    }
+
+    .platform-base {
+      width: 100%;
+      border-radius: var(--radius-md);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 12px 10px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .platform-base.elevated {
+      background: linear-gradient(135deg, rgba(0, 28, 76, 0.05), rgba(16, 185, 129, 0.08));
+      border: 2px solid rgba(16, 185, 129, 0.3);
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.12);
+    }
+
+    .platform-base.elevated.landed {
+      border-color: #10B981;
+      transform: scale(1.04);
+      box-shadow: 0 16px 40px rgba(16, 185, 129, 0.28);
+    }
+
+    .book-spine-group {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 6px;
+    }
+
+    .book-spine {
+      background: var(--line);
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .career-pills-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .career-pill {
+      background: rgba(0, 28, 76, 0.06);
+      color: var(--navy);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+    }
+
+    .platform-label {
+      margin-top: 10px;
+    }
+
+    .platform-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .platform-tag.highlight {
+      color: #10B981;
+    }
+
+    .platform-label strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .platform-desc {
+      font-size: 11px;
+      color: var(--muted);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .leap-svg-arc {
       position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .arc-track-bg {
+      stroke: rgba(0, 28, 76, 0.08);
+      stroke-dasharray: 6 6;
+    }
+
+    .arc-track-active {
+      transition: stroke-dashoffset 0.04s linear;
+    }
+
+    .leap-runner-node {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 46px;
+      height: 46px;
+      margin-top: -23px;
+      margin-left: -23px;
+      z-index: 5;
+      pointer-events: none;
+      transform: translate3d(80px, 340px, 0);
+      will-change: transform;
+    }
+
+    .runner-body {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--navy);
+      box-shadow: 0 4px 20px rgba(0, 28, 76, 0.35);
       display: flex;
       align-items: center;
-      gap: 8px;
-      border-radius: 999px;
-      padding: 10px 16px;
-      font-size: 12px;
-      font-weight: 700;
-      white-space: nowrap;
-      box-shadow: var(--shadow-md);
-    }
-
-    .hero-pill-1 {
-      bottom: -20px;
-      left: -24px;
-      background: #fff;
-      color: var(--ink);
-      border: 1px solid var(--line);
-    }
-
-    .hero-pill-1 .pill-dot { width: 8px; height: 8px; border-radius: 50%; background: #10B981; }
-
-    .hero-pill-2 {
-      top: -20px;
-      right: -20px;
-      background: var(--red);
+      justify-content: center;
       color: #fff;
+      position: relative;
+      transition: background 0.3s, transform 0.2s;
     }
 
-    @media (max-width: 640px) {
-      .hero-pill-1 { left: 0; bottom: -16px; }
-      .hero-pill-2 { right: 0; top: -16px; }
+    .runner-glow {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(216, 34, 33, 0.4) 0%, transparent 70%);
+      animation: pulseGlow 1.8s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.3); opacity: 1; }
+    }
+
+    .runner-tag {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--navy);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s;
+    }
+
+    .runner-body.landed {
+      background: #10B981;
+      transform: scale(1.1);
+    }
+    .runner-body.landed + .runner-tag {
+      background: #10B981;
+    }
+
+    .in-flight-badge {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 8px 14px;
+      box-shadow: var(--shadow-sm);
+      z-index: 4;
+      opacity: 0.25;
+      transform: translateY(8px) scale(0.92);
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+    }
+
+    .in-flight-badge.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(0, 28, 76, 0.2);
+    }
+
+    .badge-1 { left: 26%; top: 180px; }
+    .badge-2 { left: 47%; top: 70px; }
+    .badge-3 { left: 68%; top: 115px; }
+
+    .in-flight-badge strong {
+      display: block;
+      font-size: 12px;
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .in-flight-badge small {
+      display: block;
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .touchdown-ripple {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #10B981;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .touchdown-ripple.fired {
+      animation: rippleBurst 0.9s cubic-bezier(0, 0.7, 0.1, 1) forwards;
+    }
+
+    @keyframes rippleBurst {
+      0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(5.5); opacity: 0; }
+    }
+
+    .leap-stage-footer {
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .leap-progress-track {
+      width: 240px;
+      height: 5px;
+      background: var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .leap-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--red) 0%, var(--navy) 50%, #10B981 100%);
+      transition: width 0.04s linear;
+    }
+
+    .leap-scroll-tip {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    @media (max-width: 860px) {
+      .leap-stage-container { height: 180vh; }
+      .leap-canvas-wrap { height: 380px; }
+      .platform-left { left: 16px; width: 135px; bottom: 16px; }
+      .platform-right { right: 16px; width: 135px; bottom: 85px; }
+      .badge-1 { left: 22%; top: 190px; padding: 6px 10px; }
+      .badge-2 { left: 42%; top: 55px; padding: 6px 10px; }
+      .badge-3 { left: 62%; top: 105px; padding: 6px 10px; }
     }
 
     /* ============================================================
@@ -1225,6 +1476,115 @@
     </section>
 
     <!-- ============================================================
+         02.5 THE CANYON LEAP: SCROLL INTERLUDE
+    ============================================================ -->
+    <section class="leap-stage-container" id="the-leap" aria-label="Interactive Leap Experience">
+      <div class="leap-sticky-viewport">
+        <div class="wrap leap-stage-wrap">
+          <div class="leap-stage-header">
+            <span class="eyebrow">🚀 The Defining Transition</span>
+            <h2 class="section-title">Taking The <em>Big Leap</em> in Life</h2>
+            <p class="section-sub">From syllabus memorization to boundless real-world capability. Watch the leap unfold as you scroll.</p>
+          </div>
+
+          <!-- Dynamic SVG Leap Canvas -->
+          <div class="leap-canvas-wrap" id="leap-canvas">
+            <!-- Left Platform (Syllabus) -->
+            <div class="leap-platform platform-left" id="platform-syllabus">
+              <div class="platform-base">
+                <div class="book-spine-group">
+                  <span class="book-spine">NCERT</span>
+                  <span class="book-spine">CBSE</span>
+                  <span class="book-spine">EXAMS</span>
+                </div>
+              </div>
+              <div class="platform-label">
+                <span class="platform-tag">Starting Point</span>
+                <strong>The Syllabus Base</strong>
+                <span class="platform-desc">Bounded & exam-focused</span>
+              </div>
+            </div>
+
+            <!-- SVG Arc & Runner -->
+            <svg class="leap-svg-arc" id="leap-svg" viewBox="0 0 1000 420" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="arc-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#94A3B8" stop-opacity="0.4" />
+                  <stop offset="35%" stop-color="#D82221" />
+                  <stop offset="70%" stop-color="#2563EB" />
+                  <stop offset="100%" stop-color="#10B981" />
+                </linearGradient>
+                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+
+              <!-- Guide track -->
+              <path class="arc-track-bg" d="M 120 340 C 300 330, 380 60, 520 60 C 660 60, 750 170, 880 170" fill="none" stroke="rgba(0,28,76,0.08)" stroke-width="4" stroke-dasharray="6 6" />
+
+              <!-- Active drawn arc -->
+              <path id="leap-curve" class="arc-track-active" d="M 120 340 C 300 330, 380 60, 520 60 C 660 60, 750 170, 880 170" fill="none" stroke="url(#arc-gradient)" stroke-width="6" stroke-linecap="round" filter="url(#glow)" />
+            </svg>
+
+            <!-- Leaping Character / Energy Avatar -->
+            <div id="leap-runner" class="leap-runner-node">
+              <div class="runner-glow"></div>
+              <div class="runner-body" id="runner-body">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" class="runner-icon" aria-hidden="true">
+                  <circle cx="15" cy="5" r="2.2" fill="#FFFFFF"/>
+                  <path d="M7 21l3-6 3.5 2 2.5 5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10 15l2-4 3.5 1.5 3-2.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12 11l-4-3 1.5-3" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="runner-tag" id="runner-tag">Springing Forward</div>
+            </div>
+
+            <!-- In-Flight Floating Milestones -->
+            <div class="in-flight-badge badge-1" id="badge-curiosity">
+              <strong>01. Curiosity</strong>
+              <small>Explore 100+ paths</small>
+            </div>
+            <div class="in-flight-badge badge-2" id="badge-skills">
+              <strong>02. Real Skills</strong>
+              <small>Life & Digital Edge</small>
+            </div>
+            <div class="in-flight-badge badge-3" id="badge-clarity">
+              <strong>03. Clear Path</strong>
+              <small>1-on-1 Mentor Guidance</small>
+            </div>
+
+            <!-- Right Platform (Real World & Career) -->
+            <div class="leap-platform platform-right" id="platform-career">
+              <div class="platform-base elevated" id="platform-dest-base">
+                <div class="touchdown-ripple" id="touchdown-ripple"></div>
+                <div class="career-pills-group">
+                  <span class="career-pill">100+ CAREERS</span>
+                  <span class="career-pill">1-on-1 MENTOR</span>
+                  <span class="career-pill">CONFIDENCE</span>
+                </div>
+              </div>
+              <div class="platform-label">
+                <span class="platform-tag highlight">Destination</span>
+                <strong>The Real World</strong>
+                <span class="platform-desc">Life readiness & success</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom scroll tracker indicator -->
+          <div class="leap-stage-footer">
+            <div class="leap-progress-track">
+              <div class="leap-progress-bar" id="leap-progress-fill"></div>
+            </div>
+            <div class="leap-scroll-tip" id="leap-tip-text">Scroll to power the leap ↓</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
          03. WHAT WE DO
     ============================================================ -->
     <section class="what-section" id="what-we-do" aria-labelledby="what-heading">
@@ -1668,6 +2028,101 @@
       });
       successMsg.style.display = 'block';
     });
+
+    // ============================================================
+    // THE CANYON LEAP: SCROLL DRIVER
+    // ============================================================
+    const leapContainer = document.getElementById('the-leap');
+    const leapCurve = document.getElementById('leap-curve');
+    const leapRunner = document.getElementById('leap-runner');
+    const runnerBody = document.getElementById('runner-body');
+    const runnerTag = document.getElementById('runner-tag');
+    const leapProgressFill = document.getElementById('leap-progress-fill');
+    const leapTipText = document.getElementById('leap-tip-text');
+    const destPlatform = document.getElementById('platform-dest-base');
+    const ripple = document.getElementById('touchdown-ripple');
+    const badge1 = document.getElementById('badge-curiosity');
+    const badge2 = document.getElementById('badge-skills');
+    const badge3 = document.getElementById('badge-clarity');
+    const canvasWrap = document.getElementById('leap-canvas');
+
+    if (leapContainer && leapCurve && leapRunner) {
+      let pathLength = leapCurve.getTotalLength();
+      leapCurve.style.strokeDasharray = pathLength;
+      leapCurve.style.strokeDashoffset = pathLength;
+
+      let hasRippled = false;
+
+      function updateLeapProgress() {
+        const rect = leapContainer.getBoundingClientRect();
+        const winHeight = window.innerHeight;
+        const totalScrollable = rect.height - winHeight;
+
+        if (totalScrollable <= 0) return;
+
+        let progress = -rect.top / totalScrollable;
+        progress = Math.max(0, Math.min(1, progress));
+
+        const point = leapCurve.getPointAtLength(progress * pathLength);
+        const cWidth = canvasWrap.clientWidth;
+        const cHeight = canvasWrap.clientHeight;
+        const actualX = (point.x / 1000) * cWidth;
+        const actualY = (point.y / 420) * cHeight;
+
+        leapRunner.style.transform = `translate3d(${actualX}px, ${actualY}px, 0)`;
+        leapCurve.style.strokeDashoffset = pathLength * (1 - progress);
+        leapProgressFill.style.width = `${progress * 100}%`;
+
+        if (progress < 0.20) {
+          runnerTag.textContent = 'Coiling & Momentum';
+          runnerBody.classList.remove('landed');
+          destPlatform.classList.remove('landed');
+          leapTipText.textContent = 'Scroll to launch the leap ↓';
+          hasRippled = false;
+        } else if (progress < 0.45) {
+          runnerTag.textContent = '01. Curiosity Sparked';
+          runnerBody.classList.remove('landed');
+          destPlatform.classList.remove('landed');
+          leapTipText.textContent = 'Ascending beyond syllabus limits…';
+        } else if (progress < 0.75) {
+          runnerTag.textContent = '02. Real Skills & Elevation';
+          runnerBody.classList.remove('landed');
+          destPlatform.classList.remove('landed');
+          leapTipText.textContent = 'Reaching career peak flight…';
+        } else if (progress < 0.92) {
+          runnerTag.textContent = '03. Preparing Landing';
+          runnerBody.classList.remove('landed');
+          destPlatform.classList.remove('landed');
+          leapTipText.textContent = 'Final approach to real-world capability…';
+        } else {
+          runnerTag.textContent = '🎉 Big Leap Achieved!';
+          runnerBody.classList.add('landed');
+          destPlatform.classList.add('landed');
+          leapTipText.textContent = '✅ Landed with confidence!';
+          if (!hasRippled) {
+            ripple.classList.remove('fired');
+            void ripple.offsetWidth;
+            ripple.classList.add('fired');
+            hasRippled = true;
+          }
+        }
+
+        badge1.classList.toggle('active', progress >= 0.25);
+        badge2.classList.toggle('active', progress >= 0.50);
+        badge3.classList.toggle('active', progress >= 0.75);
+      }
+
+      window.addEventListener('scroll', () => {
+        requestAnimationFrame(updateLeapProgress);
+      }, { passive: true });
+
+      window.addEventListener('resize', () => {
+        pathLength = leapCurve.getTotalLength();
+        updateLeapProgress();
+      }, { passive: true });
+
+      updateLeapProgress();
+    }
   </script>
 
 </body>
